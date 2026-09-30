@@ -69,7 +69,7 @@ function shuffle(array) {
 
 /**
  * Formata um total de segundos no formato `MM:SS`.
- * @param {number} seconds - Quantidade de segundos a formatar.
+ * @param {number} seconds Quantidade de segundos a formatar.
  * @returns {string} Tempo formatado em minutos e segundos.
  */
 function formatTime(seconds) {

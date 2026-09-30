@@ -26,7 +26,7 @@
  */
 
 const BTN = 'bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700';
-const BTN_OUTLINE = 'border border-gray-400 bg-white px-4 py-2 rounded hover:bg-gray-100';
+const BTN_OUTLINE = 'border border-gray-400 bg-white px-4 py-2 rounded';
 
 
 const Auth = {
@@ -160,8 +160,8 @@ function renderHome() {
             <p class="mb-4 text-lg">Olá, <strong>${escapeHTML(user.name)}</strong>!</p>
             <div class="flex flex-wrap gap-3 justify-center">
                 <a class="${BTN}" href="game.html">Iniciar jogo</a>
-                <a class="${BTN_OUTLINE}" href="scoreboard.html">Scoreboard</a>
-                <button class="${BTN_OUTLINE}" id="logout">Sair</button>
+                <a class="${BTN_OUTLINE} hover:bg-gray-100" href="scoreboard.html">Scoreboard</a>
+                <button class="${BTN_OUTLINE} bg-red-500 text-white hover:bg-red-600" id="logout">Sair</button>
             </div>`;
         $('#logout').addEventListener('click', Auth.logout);
     } else {
