@@ -42,7 +42,7 @@ const Store = {
 
 /**
  * Seletor de elementos HTML
- * Wrapper para querySelector
+ * Wrapper para querySelector basicamente
  * @template {Element} [T=HTMLElement]
  * @param {string} selector - Seletor do elemento.
  * @returns {T | null} O elemento encontrado ou `null`.

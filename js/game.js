@@ -6,9 +6,26 @@ const EMOJIS = Array.from('🐀🐁🐂🐃🐄🐅🐆🐇🐈🐉🐊🐋🐌�
     '🍲🍳🍴🍵🍶🍷🍸🍹🍺🍻');
 
 const DIFFICULTIES = {
-    '3x3': { n: 3, time: 60, mult: 1, cols: 'grid-cols-3', text: 'text-4xl', width: 'max-w-xs' },
-    '6x6': { n: 6, time: 150, mult: 2, cols: 'grid-cols-6', text: 'text-2xl', width: 'max-w-md' },
-    '9x9': { n: 9, time: 360, mult: 3, cols: 'grid-cols-9', text: 'text-lg', width: 'max-w-xl' },
+    '3x3': { 
+        n: 3, 
+        time: 60, 
+        mult: 1, 
+        cols: 'grid-cols-3', 
+        text: 'text-4xl', 
+        width: 'max-w-xs' 
+    },
+
+    '6x6': { 
+        n: 6, 
+        time: 150, 
+        mult: 2, 
+        cols: 'grid-cols-6', 
+        text: 'text-2xl', 
+        width: 'max-w-md' 
+    },
+    '9x9': { 
+        n: 9, 
+        time: 360, mult: 3, cols: 'grid-cols-9', text: 'text-lg', width: 'max-w-xl' },
     '12x12': { n: 12, time: 720, mult: 4, cols: 'grid-cols-12', text: 'text-sm', width: 'max-w-2xl' },
     '15x15': { n: 15, time: 1200, mult: 5, cols: 'grid-cols-[repeat(15,minmax(0,1fr))]', text: 'text-xs', width: 'max-w-3xl' },
 };
