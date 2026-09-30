@@ -25,9 +25,28 @@ const DIFFICULTIES = {
     },
     '9x9': { 
         n: 9, 
-        time: 360, mult: 3, cols: 'grid-cols-9', text: 'text-lg', width: 'max-w-xl' },
-    '12x12': { n: 12, time: 720, mult: 4, cols: 'grid-cols-12', text: 'text-sm', width: 'max-w-2xl' },
-    '15x15': { n: 15, time: 1200, mult: 5, cols: 'grid-cols-[repeat(15,minmax(0,1fr))]', text: 'text-xs', width: 'max-w-3xl' },
+        time: 360,
+        mult: 3, 
+        cols: 'grid-cols-9',
+        text: 'text-lg',
+        width: 'max-w-xl'
+    },
+    '12x12': {
+        n: 12,
+        time: 720,
+        mult: 4,
+        cols: 'grid-cols-12',
+        text: 'text-sm',
+        width: 'max-w-2xl'
+    },
+    '15x15': {
+        n: 15,
+        time: 1200,
+        mult: 5,
+        cols: 'grid-cols-[repeat(15,minmax(0,1fr))]',
+        text: 'text-xs', 
+        width: 'max-w-3xl'
+    },
 };
 
 const FLIP = '[transform:rotateY(180deg)]';
