@@ -1,26 +1,75 @@
+/**
+ * @typedef {Object} User
+ * @property {string} name 
+ * @property {string} email 
+ * @property {string} password
+ */
+
+/**
+ * @typedef {Object} CurrentUser
+ * @property {string} name 
+ * @property {string} email
+ */
+
+/**
+ * @typedef {Object} SignUpData
+ * @property {string} name 
+ * @property {string} email 
+ * @property {string} password 
+ * @property {string} confirm
+ */
+
+/**
+ * @typedef {Object} LoginData
+ * @property {string} email 
+ * @property {string} password 
+ */
+
 const BTN = 'bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700';
 const BTN_OUTLINE = 'border border-gray-400 bg-white px-4 py-2 rounded hover:bg-gray-100';
 
+
 const Auth = {
+    /**
+     * Obtém a lista de usuários cadastrados.
+     * @returns {User[]} Lista de usuários.
+     */
     users() {
         return Store.get('users', []);
     },
 
+    /**
+     * Obtém o usuário atualmente logado.
+     * @returns {CurrentUser | null} Usuário logado ou null caso não esteja autenticado.
+     */
     current() {
         return Store.get('currentUser', null);
     },
 
+    /**
+     * Redireciona para a página de login se o usuário não estiver autenticado.
+     * @returns {void}
+     */
     require() {
         if (!Auth.current()) {
             location.replace('login.html');
         }
     },
 
+    /**
+     * Encerra a sessão do usuário atual e redireciona para a página inicial.
+     * @returns {void}
+     */
     logout() {
         Store.remove('currentUser');
         location.href = 'index.html';
     },
 
+    /**
+     * Realiza o cadastro de um novo usuário.
+     * @param {SignUpData} data - Dados do formulário de cadastro.
+     * @returns {string | null} Mensagem de erro caso ocorra falha ou null em caso de sucesso.
+     */
     signUp(data) {
         const name = data.name.trim();
         const email = data.email.trim().toLowerCase();
@@ -40,6 +89,11 @@ const Auth = {
         return null;
     },
 
+    /**
+     * Realiza o login do usuário.
+     * @param {LoginData} data - Dados do formulário de login.
+     * @returns {string | null} Mensagem de erro caso ocorra falha ou null em caso de sucesso.
+     */
     login(data) {
         const email = data.email.trim().toLowerCase();
         const user = Auth.users().find((u) => u.email === email && u.password === data.password);
@@ -51,7 +105,21 @@ const Auth = {
     },
 };
 
+/**
+ * Função de callback para manipulação do formulário de autenticação.
+ * @callback AuthHandler
+ * @param {Record<string, any>} data - Objeto contendo os campos do formulário.
+ * @returns {string | null} Mensagem de erro ou null se o envio for bem-sucedido.
+ */
+
+/**
+ * Associa o evento de submit de um formulário de autenticação ao manipulador correspondente.
+ * @param {string} formId - O ID do elemento `<form>`.
+ * @param {AuthHandler} handler - A função responsável por processar os dados do formulário.
+ * @returns {void}
+ */
 function bindAuthForm(formId, handler) {
+    /** @type {HTMLFormElement | null} */
     const form = document.getElementById(formId);
     if (!form) return;
 
@@ -74,7 +142,14 @@ function bindAuthForm(formId, handler) {
 bindAuthForm('signup-form', Auth.signUp);
 bindAuthForm('login-form', Auth.login);
 
+/**
+ * Renderiza os botões ou ações da página inicial com base no estado de autenticação.
+ * @returns {void}
+ */
 function renderHome() {
+    /** 
+     * @type {HTMLElement | null} 
+    */
     const box = $('#home-actions');
     if (!box) return;
 

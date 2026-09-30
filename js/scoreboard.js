@@ -1,14 +1,47 @@
+/**
+ * Níveis de dificuldade suportados pelo jogo.
+ * @typedef {'3x3' | '6x6' | '9x9' | '12x12' | '15x15'} DifficultyLevel
+ */
+
+/**
+ * Registro de pontuação de um jogador.
+ * @typedef {Object} ScoreEntry
+ * @property {string} user
+ * @property {DifficultyLevel} difficulty
+ * @property {number} score
+ * @property {number} time 
+ * @property {string} [date]
+ */
+
+/**
+ * Módulo para gerenciamento do histórico e ranking de pontuações.
+ */
 const Scores = {
+    /**
+     * Obtém todas as pontuações salvas.
+     * @returns {ScoreEntry[]} Lista de pontuações.
+     */
     all() {
         return Store.get('scores', []);
     },
 
+    /**
+     * Adiciona um novo registro de pontuação ao histórico.
+     * @param {ScoreEntry} entry - Objeto contendo os dados da pontuação.
+     * @returns {void}
+     */
     add(entry) {
         const scores = Scores.all();
         scores.push(entry);
         Store.set('scores', scores);
     },
 
+    /**
+     * Retorna o ranking das 20 melhores pontuações, opcionalmente filtrado por dificuldade.
+     * Ordena por maior pontuação e, em caso de empate, pelo menor tempo.
+     * @param {DifficultyLevel} [difficulty] - Dificuldade para filtrar (opcional).
+     * @returns {ScoreEntry[]} Lista das melhores pontuações ordenadas.
+     */
     top(difficulty) {
         return Scores.all()
             .filter((s) => !difficulty || s.difficulty === difficulty)
@@ -16,6 +49,7 @@ const Scores = {
             .slice(0, 20);
     },
 };
+
 
 function renderScoreboard() {
     const body = $('#score-body');
